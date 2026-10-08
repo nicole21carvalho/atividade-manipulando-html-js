@@ -1,14 +1,17 @@
 var area = document.getElementById('area');
 
 function entrar() {
-  var nome = prompt("Digite seu nome:");
-  var curso = prompt("Digite seu curso:");
+  // trim() tira os espaços: um nome só com espaços também conta como vazio
+  var nome = (prompt("Digite seu nome:") || '').trim();
+  var curso = (prompt("Digite seu curso:") || '').trim();
 
-  if (nome === '' || nome === null || curso === '' || curso === null) {
+  if (nome === '' || curso === '') {
     alert("Ops, algo deu errado!");
-    area.innerHTML = "Clique no botão para acessar...";
+    area.textContent = "Clique no botão para acessar...";
   } else {
-    area.innerHTML = "Bem-vindo, " + nome + ", ao curso de " + curso + "! ";
+    // textContent mostra o que foi digitado como texto. Com innerHTML,
+    // um nome como <img src=x onerror=alert(1)> seria executado como código.
+    area.textContent = "Bem-vindo, " + nome + ", ao curso de " + curso + "! ";
 
     var botaoSair = document.createElement("button");
     botaoSair.innerText = "Sair da conta";
@@ -21,7 +24,7 @@ function entrar() {
 
 function sair() {
   alert("Até mais!");
-  area.innerHTML = "Você saiu!";
+  area.textContent = "Você saiu!";
 }
 
 function mediaTresNotas(nota1, nota2, nota3) {
